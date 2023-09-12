@@ -24,10 +24,6 @@ Septième-arche est une application web qui permet au magasin 7ème Arche de met
     2. Web Services.
     3. Repository.
 
-## Gérer les donnés:
-    1. MySqul
-    2. PhpMyAdmin => MAMP
-
 ## Plus d'infos:
     1. Maven = v: 3.8.1
     2. java = v: 17
