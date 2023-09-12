@@ -49,16 +49,19 @@ public class CommandeController {
     public ResponseEntity<Commande> createCommande(@RequestBody Commande commande) throws StockException {
         System.out.println("LA COMMANDE EST  :  " + commande.toString());
         for (CommandeLine cl: commande.getCommandeLines()){
-
+            // on récupère l'id de product transmis dans la requête en JSON
             long idProduct = cl.getProduct().getId();
-
+            // on recherche le product en base pour retrouver le product complet
             Optional<Product> p = productService.getProductById(idProduct);
-
+            // on modifie la ligne de commande avec l'article retrouvé
             if (p.isPresent()) {
                 Product product = p.get();
                 cl.setProduct(product);
+                /* On vérifie si le product est numérique ou physique, s'il est numérique on le passe pas
+                par la méthode de décrementation de stock */
                 if(!product.isDigitalProduct()) {
                     try {
+                        //On décrement la quantity commandées de stock
                         product.decrementStock(cl.getQuantity());
                     } catch(StockException ex) {
                         throw new StockException(ex.getMessage() + " " + product.getDescription());
@@ -66,16 +69,22 @@ public class CommandeController {
                 } else {
                     cl.setQuantity(null);
                 }
+                //Relier la commande avec les commandelines
                 cl.setCommande(commande);
                 bookService.updateBook(idProduct, (Book) product);
             } else {
                 throw new RuntimeException ("id erroné de produit");
             }
         }
+        //Calculer le prix total TTC = TotalInclTaxPrice
         commande.setTotalInclTaxPrice(commande.getTotalExclTaxPrice() * (1 + commande.getVat()));
+        // Création de la Commande
         commandeService.createCommande(commande);
+        // Création de la réference de la commande = commandeRef
         commande.setCommandeRef("C" + commande.getId() + "-U" + commande.getUser().getId() + "-P" + commande.getTotalInclTaxPrice());
+        //Dooner la valeur de commandeRef à invoiceRefla
         commande.getInvoice().setInvoiceRef(commande.getCommandeRef());
+        //Rélier la commande avec la facture = invoice
         commande.getInvoice().setCommande(commande);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(commande);
