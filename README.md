@@ -22,4 +22,8 @@ Septième-arche est une application web qui permet au magasin 7ème Arche de met
     C'est l'architectuire ( 3-tier ):
     1. Presentation.
     2. Web Services.
-    3. Repository. 
+    3. Repository.
+
+## Gérer les donnés:
+    1. MySqul
+    2. PhpMyAdmin => MAMP
