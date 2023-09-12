@@ -28,12 +28,3 @@ Septième-arche est une application web qui permet au magasin 7ème Arche de met
     1. MySqul
     2. PhpMyAdmin => MAMP
 
-## Plus d'infos:
-    1. Maven = v: 3.8.1
-    2. java = v: 17
-    3. Tomcat = started on port(s): 8080 (http) with context path '/septiemearche'
-    4. Data Base = MySQL (v:5.7.34) + port: http://localhost:8888/phpMyAdmin5/index.php?
-       route=/database/structure&server=1&db=septieme_arche
-    5. React.js for Front-end = http://localhost:3000/products
-
-
