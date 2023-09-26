@@ -96,6 +96,12 @@ public class ProductController {
 
 
     /* ============================================ getProductByDescription ============================================= */
+    /**
+     * This "get Product By Description" method allows us to search articles by entering their title (which is description here).
+     * @param description
+     * @return A list of found products, in case of finding at least one product.
+     * @throws ProductNotFoundException, in case of finding nothing.
+     */
     @GetMapping(params = {"description"})
     public ResponseEntity<List<Product>> getProductByDescription(@RequestParam String description) throws ProductNotFoundException {
         List<Product> products = productService.getProductByDescription(description);

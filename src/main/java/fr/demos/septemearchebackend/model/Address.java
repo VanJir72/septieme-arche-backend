@@ -20,7 +20,7 @@ public class Address {
 
 
     @Enumerated(value = EnumType.STRING)
-    private AdresseType addressType;
+    private AdresseType addressType; //Think to change it to List<AddressType>
     private String addressDetails;
     private String city;
     private String postalCode;
