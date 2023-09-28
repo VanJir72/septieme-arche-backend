@@ -7,7 +7,8 @@ Septième-arche est une application web qui permet au magasin 7ème Arche de met
 
 ## Lancer le projet:
 ### o) Le Back-end:
-    1. Ouvrire un terminal.
+    1. Ouvrire le XAMPP, pour accéder aux BDD.
+    2. Ouvrire un terminal. 
     2. Taper la commande suivante:
         java -jar  /Users/ivan.jirjees/Desktop/septieme-arche/
         septieme-arche-backend/out/artifacts/septieme_arche_
